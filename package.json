@@ -1,0 +1,26 @@
+{
+  "name": "electron-spawn-catch",
+  "version": "1.0.0",
+  "description": "A minimal Electron application to test catching errors on spawn",
+  "main": "main.js",
+  "engines": {
+    "node": ">= 8 < 12",
+    "yarn": ">= 1.5.2"
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "Electron",
+    "spawn",
+    "test",
+    "demo"
+  ],
+  "author": "summeroff",
+  "license": "",
+  "devDependencies": {
+    "electron": "2.0.14",
+    "cross-spawn": "^6.0.5"
+  }
+}
