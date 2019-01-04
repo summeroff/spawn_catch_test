@@ -2,7 +2,7 @@
 Test app to catch failed spawn
 
 ## To Use
-make dir `spawned_app` and put some app in it. Name it `test.exe` or change name in `spawn_app.js`
+There is test batch file in `spawned_app` dir. You can put some app in it and change `updaterPath` in `spawn_app.js`
 
 ```
 npm install

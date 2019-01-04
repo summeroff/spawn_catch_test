@@ -2,7 +2,7 @@ const cp = require('child_process');
  
 async function spawn_app() {
     
-  const updaterPath = "spawned_app\\test1.exe "  // i use some app what i have nearby . any console app will be fine 
+  const testAppPath = "spawned_app\\test.bat"  // i use some app what i have nearby . any console app will be fine 
   const updaterDir = __dirname ;
 
   const updaterArgs = [
@@ -14,7 +14,7 @@ async function spawn_app() {
     '--force-temp'
   ];
 
-  const app_spawned = cp.spawn(`${updaterPath}`, updaterArgs, {
+  const app_spawned = cp.spawn(`${testAppPath}`, updaterArgs, {
     cwd: updaterDir,
     detached: false,  //we have to be attached to launched process at least until we decide that it to do next 
     //stdio: 'ignore',
