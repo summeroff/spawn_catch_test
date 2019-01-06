@@ -1,9 +1,9 @@
 const cp = require('child_process');
  
 async function spawn_app() {
-    
-  const testAppPath = "spawned_app\\test.bat"  // i use some app what i have nearby . any console app will be fine 
-  const updaterDir = __dirname ;
+  
+  const testAppPath = "start \"\"  \"spawned_app\\updater.exe\" && echo update_started_fine_app_can_be_closed"  
+  const updaterDir = __dirname;
 
   const updaterArgs = [
     '--base-url', `"c:\\work\\"`,
@@ -17,8 +17,10 @@ async function spawn_app() {
   const app_spawned = cp.spawn(`${testAppPath}`, updaterArgs, {
     cwd: updaterDir,
     detached: false,  //we have to be attached to launched process at least until we decide that it to do next 
+    //detached: true, 
     //stdio: 'ignore',
     //stdio: 'inherit',  //looks like I get data from stdio only when it is not manualy set
+    //stdoi: 'pipe',
     shell: true
   });
 
@@ -46,18 +48,18 @@ async function spawn_app() {
     app_spawned.stdout.on('data', resolve);
   });
 
-  const primiseTimeout = new Promise(resolve => {
-    setTimeout(() => resolve("timer on timeout"), 5000);  //5 seconds maybe to much its just for test 
-  });
+  // const primiseTimeout = new Promise(resolve => {
+  //   setTimeout(() => resolve("timer on timeout"), 15000);  //5 seconds maybe to much its just for test 
+  // });
   
   //wait for something to happen
-  var promise = await Promise.race([primiseError, primiseExit, primiseDataOut, primiseDataError,primiseTimeout]); 
+  var promise = await Promise.race([primiseError, primiseExit, primiseDataOut, primiseDataError]);  //primiseTimeout
   //print what happen
   console.log('SPAWN: promise ' + `result \"${promise}\"`);
   
   app_spawned.unref();
 
-  if(`${promise}`.startsWith("timer") || `${promise}`.startsWith("tests") )  //hardcoded string "tests" . app have to send it console at start to indicate that it successfuly launched
+  if(`${promise}`.startsWith("timer") || `${promise}`.startsWith("update_started_fine_app_can_be_closed") )  //hardcoded string "tests" . app have to send it console at start to indicate that it successfuly launched
   {
     return true;  //we get output from app or timeout. so there is at least was no fail to start app 
   } else {
