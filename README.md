@@ -17,4 +17,4 @@ Ways to test spawn fail:
 * change app name in var `updaterPath` to some wrong name
 * change app name in var `updaterPath` to some file name that is not executable
 * change permission on app to restrict its execution
-
+* use app restricted by UAC
