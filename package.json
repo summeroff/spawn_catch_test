@@ -20,7 +20,7 @@
   "author": "summeroff",
   "license": "",
   "devDependencies": {
-    "electron": "9.1.0",
+    "electron": "10.1.3",
     "cross-spawn": "^6.0.5"
   }
 }
